@@ -1,0 +1,25 @@
+Given an array of integers nums, sort the array in ascending order and return it.
+You must solve the problem without using any built-in functions in O(nlog(n)) time complexity and with the smallest space complexity possible.
+Example 1:
+Input: nums = [5,2,3,1]
+Output: [1,2,3,5]
+Explanation: After sorting the array, the positions of some numbers are not changed (for example, 2 and 3), while the positions of other numbers are changed (for example, 1 and 5).
+
+
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+
+        for(String word:strs){
+            char[] chars = word.toCharArray();
+            Arrays.sort(chars);
+            String sorted = new String(chars);
+
+            if(!map.containsKey(sorted)){
+                map.put(sorted, new ArrayList<>());
+            }
+            map.get(sorted).add(word);
+        }
+        return new ArrayList<>(map.values());
+    }
+}
